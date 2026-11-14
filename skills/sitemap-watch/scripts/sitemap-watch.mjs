@@ -13,7 +13,7 @@ import { join, resolve } from "node:path";
 import { gunzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 
-export const VERSION = "1.101";
+export const VERSION = "1.102";
 export const USER_AGENT = `sitemap-watch/${VERSION} (+https://github.com/Olexan-art/sitemap-watch)`;
 
 const DEFAULTS = {
