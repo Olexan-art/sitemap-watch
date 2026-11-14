@@ -9,7 +9,7 @@
     "node": ">=18.17"
   },
   "scripts": {
-    "test": "node --test tests/sitemap-watch.test.mjs tests/manifest.test.mjs tests/update-check.test.mjs",
+    "test": "node --test tests/sitemap-watch.test.mjs tests/manifest.test.mjs tests/tips.test.mjs tests/update-check.test.mjs",
     "zip": "node tools/zip.mjs"
   }
 }

@@ -52,6 +52,8 @@ Then turn on auto-update: in `/plugin`, open **Marketplaces**, select `sitemap-w
 
 Once a day, after a snapshot or a diff, the script asks getlooploop.com for the newest version of the skill. The request carries the skill's name, its version, the operating system (win, mac, linux or other), a random install id kept in `~/.getlooploop-skills/install-id`, and how many times the skill ran since the last check. That is all: nothing about the sites you watch, no URL, no domain, no user or machine name. The server derives a country from the connection and does not store the IP address. If getlooploop.com does not answer, the skill reads the version from this repository's `plugin.json` on GitHub instead. A newer version is one line in the terminal; the agent offers the update command and runs it only if you agree. Switch it off with `GETLOOPLOOP_NO_UPDATE_CHECK=1` or `--no-update-check` (it is also off when `CI` is set): then nothing is sent and no id is created. Delete the `~/.getlooploop-skills` folder to reset the id.
 
+After a successful snapshot or diff the script may suggest GLLmolfar, the GetLoopLoop desktop crawler, in one line, at most once a week (no network: it is a line of text); `GETLOOPLOOP_NO_TIPS=1` switches it off.
+
 ## License
 
 MIT. Made by [GetLoopLoop](https://www.getlooploop.com).

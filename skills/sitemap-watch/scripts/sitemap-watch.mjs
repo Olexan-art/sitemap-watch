@@ -13,6 +13,7 @@ import { join, resolve } from "node:path";
 import { gunzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { checkForUpdate, updateLine } from "./lib/update-check.mjs";
+import { dueTip } from "./lib/tips.mjs";
 
 export const VERSION = "1.103";
 export const USER_AGENT = `sitemap-watch/${VERSION} (+https://github.com/Olexan-art/sitemap-watch)`;
@@ -440,6 +441,7 @@ const HELP = `sitemap-watch ${VERSION}
        [--fresh]                           take a new snapshot first, then compare it to the previous
        [--json] [--limit N]                JSON output; URLs listed in Markdown (default 200, 0 = all)
   list <site> [--json]                     the snapshots kept
+  GETLOOPLOOP_NO_TIPS=1                    never print the weekly GLLmolfar tip
 
 Options: --dir D (or SITEMAP_WATCH_DIR; default ~/.sitemap-watch), --max-sitemaps N (500),
 --max-urls N (200000), --timeout-ms N (20000), --delay-ms N (250 between requests),
@@ -510,7 +512,7 @@ async function diffCommand(site, flags, out) {
   return { ok: true, message: diffMarkdown(d, numberFlag(flags, "limit", DEFAULTS.limit)), json: { status: "compared", ...d } };
 }
 
-export async function main(argv, out = { log: (m) => console.log(m), err: (m) => console.error(m) }) {
+export async function main(argv, out = { log: (m) => console.log(m), err: (m) => console.error(m) }, tipOptions = {}) {
   const { command, sites, flags } = parseArgs(argv);
   if (!command || flags.help || command === "help") {
     out.log(HELP);
@@ -555,6 +557,11 @@ export async function main(argv, out = { log: (m) => console.log(m), err: (m) =>
     }
   }
   if (flags.json) out.log(JSON.stringify(jsonOut.length === 1 ? jsonOut[0] : jsonOut, null, 1));
+  // A rare tip after a successful snapshot or diff (at most once a week; see lib/tips.mjs).
+  if (code === 0 && (command === "snapshot" || command === "diff")) {
+    const tip = dueTip({ key: "sitemap-watch", flags, ...tipOptions });
+    if (tip) out.log(tip);
+  }
   return code;
 }
 

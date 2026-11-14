@@ -52,6 +52,8 @@ Potem włącz automatyczne aktualizacje: w `/plugin` otwórz **Marketplaces**, w
 
 Raz na dobę, po migawce lub porównaniu, skrypt pyta getlooploop.com o najnowszą wersję skilla. Żądanie zawiera nazwę skilla, jego wersję, system operacyjny (win, mac, linux lub other), losowy identyfikator instalacji z pliku `~/.getlooploop-skills/install-id` i liczbę uruchomień skilla od ostatniego sprawdzenia. Nic więcej: żadnych danych o obserwowanych witrynach, ani adresu, ani domeny, ani nazwy użytkownika czy komputera. Serwer ustala kraj na podstawie połączenia i nie przechowuje adresu IP. Jeśli getlooploop.com nie odpowiada, skill odczytuje wersję z pliku `plugin.json` tego repozytorium na GitHubie. O nowszej wersji powie jeden wiersz w terminalu; agent zaproponuje polecenie aktualizacji i uruchomi je tylko za twoją zgodą. Wyłączenie: `GETLOOPLOOP_NO_UPDATE_CHECK=1` albo `--no-update-check` (gdy ustawiono `CI`, sprawdzanie też jest wyłączone); wtedy nic nie jest wysyłane i identyfikator nie powstaje. Aby zresetować identyfikator, usuń folder `~/.getlooploop-skills`.
 
+Po udanej migawce lub porównaniu skrypt może jednym wierszem polecić GLLmolfar, desktopowy crawler GetLoopLoop, najwyżej raz w tygodniu (bez sieci: to tylko wiersz tekstu); `GETLOOPLOOP_NO_TIPS=1` to wyłącza.
+
 ## Licencja
 
 MIT. Zrobione przez [GetLoopLoop](https://www.getlooploop.com).
