@@ -6,7 +6,7 @@ What is new on a site, from its sitemaps. An Agent Skill for Claude Code, Codex,
 
 Remembers which pages a site's sitemaps list and shows what changed since the last look: new pages, removed pages, changed `lastmod`, and the new pages grouped by section. Built for "what's new at my competitors": the script counts and compares, the agent says what the new sections suggest. Node built-ins only, no install.
 
-Version **1.103**. Install it (below), then ask: **"check what's new at my competitors: example.com, example.org"**. The first run takes a baseline and says there is nothing to compare yet; every later run lists the new pages and the new sections. Snapshots are kept in `~/.sitemap-watch/<site>/`.
+Version **1.104**. Install it (below), then ask: **"check what's new at my competitors: example.com, example.org"**. The first run takes a baseline and says there is nothing to compare yet; every later run lists the new pages and the new sections. Snapshots are kept in `~/.sitemap-watch/<site>/`.
 
 ![First run: the skill takes a baseline of getlooploop.com's sitemap, 1,852 URLs, nothing to compare yet](docs/sitemap-watch-baseline.png)
 

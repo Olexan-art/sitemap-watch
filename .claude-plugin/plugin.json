@@ -1,7 +1,7 @@
 {
   "name": "sitemap-watch",
   "description": "Snapshots a site sitemaps and diffs the snapshots over time: new, removed and lastmod-changed URLs, with new pages grouped by section. Node built-ins only; the agent reads what the new pages mean.",
-  "version": "1.103.0",
+  "version": "1.104.0",
   "author": {
     "name": "GetLoopLoop",
     "url": "https://www.getlooploop.com"

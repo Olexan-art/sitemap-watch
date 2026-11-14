@@ -3,7 +3,7 @@ name: sitemap-watch
 description: Watches the sitemaps of a site or of competitors over time. Takes a snapshot of every URL in a site's sitemaps (robots.txt, sitemap indexes, .xml.gz), stores it, and compares it with the previous snapshot - new pages, removed pages, changed lastmod, and new pages grouped by section. The script counts and compares; the agent reads what the new pages and sections mean. Use when the user asks what is new on a site, what new pages a competitor published, to check what is new at competitors, to track or monitor competitor sitemaps, or what changed in a sitemap. Also Ukrainian requests, e.g. «нові сторінки у конкурентів», «що нового в сайтмапі», «що нового на сайті конкурента», «відстежуй сайтмапи конкурентів».
 ---
 
-Version 1.103.
+Version 1.104.
 
 # Sitemap watch
 

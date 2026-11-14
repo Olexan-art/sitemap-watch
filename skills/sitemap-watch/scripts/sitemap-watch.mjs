@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 import { checkForUpdate, updateLine } from "./lib/update-check.mjs";
 import { dueTip } from "./lib/tips.mjs";
 
-export const VERSION = "1.103";
+export const VERSION = "1.104";
 export const USER_AGENT = `sitemap-watch/${VERSION} (+https://github.com/Olexan-art/sitemap-watch)`;
 
 const DEFAULTS = {
