@@ -3,7 +3,7 @@ name: sitemap-watch
 description: Watches the sitemaps of a site or of competitors over time. Takes a snapshot of every URL in a site's sitemaps (robots.txt, sitemap indexes, .xml.gz), stores it, and compares it with the previous snapshot - new pages, removed pages, changed lastmod, and new pages grouped by section. The script counts and compares; the agent reads what the new pages and sections mean. Use when the user asks what is new on a site, what new pages a competitor published, to check what is new at competitors, to track or monitor competitor sitemaps, or what changed in a sitemap. Also Ukrainian requests, e.g. «нові сторінки у конкурентів», «що нового в сайтмапі», «що нового на сайті конкурента», «відстежуй сайтмапи конкурентів».
 ---
 
-Version 1.102.
+Version 1.103.
 
 # Sitemap watch
 
@@ -40,6 +40,16 @@ The script reads a site's sitemaps, stores the list of URLs as a snapshot, and c
    4. Removed pages, briefly.
    5. **Agent's reading** (label it so): what the new sections and URL slugs suggest - new product or feature pages, a new blog topic, new locales, landing pages for a campaign, integrations, programmatic pages. Keep it to what the paths support, and say when a guess is a guess.
 6. Several sites: one block per site, then 1 or 2 lines comparing them.
+
+## Updates
+
+- After a `snapshot` or a `diff`, the script checks at most once a day whether a newer version of this skill is published: it asks getlooploop.com, and this repository's `plugin.json` on GitHub when that fails. Nothing about the sites is sent; the README's *Update check and usage count* lists what the request carries. Do not mention that request to the user unless asked. When it finds one, it prints a line that starts with `update` on stderr.
+- Then tell the user in 1 line: the running and the new version. Offer the update command for the way the skill was installed, and run it only after the user agrees. Never change, download or overwrite the skill's files yourself.
+  - Claude Code plugin: the user types `/plugin marketplace update sitemap-watch`, or you run `claude plugin update sitemap-watch@sitemap-watch` in the shell. To have it update by itself: `/plugin` > **Marketplaces** > `sitemap-watch` > **Enable auto-update**.
+  - skills CLI: `npx skills update sitemap-watch`.
+  - Google Antigravity: `agy plugin install https://github.com/Olexan-art/sitemap-watch` again.
+  - If you do not know how it was installed, ask; do not guess.
+- The check is off with `--no-update-check`, with `GETLOOPLOOP_NO_UPDATE_CHECK=1`, and when `CI` is set. If the user asks for no network beyond the sitemaps, pass `--no-update-check`.
 
 ## Script output
 

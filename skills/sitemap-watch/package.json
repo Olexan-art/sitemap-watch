@@ -1,6 +1,6 @@
 {
   "name": "getlooploop-sitemap-watch-skill",
-  "version": "1.102.0",
+  "version": "1.103.0",
   "description": "Snapshots a site's sitemaps and diffs the snapshots over time: new, removed and lastmod-changed URLs, with new pages grouped by path prefix. Node built-ins only.",
   "type": "module",
   "private": true,
@@ -9,7 +9,7 @@
     "node": ">=18.17"
   },
   "scripts": {
-    "test": "node --test tests/sitemap-watch.test.mjs tests/manifest.test.mjs",
+    "test": "node --test tests/sitemap-watch.test.mjs tests/manifest.test.mjs tests/update-check.test.mjs",
     "zip": "node tools/zip.mjs"
   }
 }

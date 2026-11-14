@@ -12,8 +12,9 @@ import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import { gunzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
+import { checkForUpdate, updateLine } from "./lib/update-check.mjs";
 
-export const VERSION = "1.102";
+export const VERSION = "1.103";
 export const USER_AGENT = `sitemap-watch/${VERSION} (+https://github.com/Olexan-art/sitemap-watch)`;
 
 const DEFAULTS = {
@@ -426,7 +427,7 @@ function parseArgs(argv) {
       continue;
     }
     const [key, inline] = a.slice(2).split(/=(.*)/s);
-    if (["json", "fresh", "quiet", "help"].includes(key)) flags[key] = true;
+    if (["json", "fresh", "quiet", "help", "no-update-check"].includes(key)) flags[key] = true;
     else flags[key] = inline !== undefined ? inline : argv[++i];
   }
   return { command: positional[0], sites: positional.slice(1), flags };
@@ -441,7 +442,8 @@ const HELP = `sitemap-watch ${VERSION}
   list <site> [--json]                     the snapshots kept
 
 Options: --dir D (or SITEMAP_WATCH_DIR; default ~/.sitemap-watch), --max-sitemaps N (500),
---max-urls N (200000), --timeout-ms N (20000), --delay-ms N (250 between requests).`;
+--max-urls N (200000), --timeout-ms N (20000), --delay-ms N (250 between requests),
+--no-update-check (or GETLOOPLOOP_NO_UPDATE_CHECK=1) skips the daily check for a newer version.`;
 
 function numberFlag(flags, name, fallback) {
   if (flags[name] === undefined) return fallback;
@@ -557,8 +559,14 @@ export async function main(argv, out = { log: (m) => console.log(m), err: (m) =>
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  main(process.argv.slice(2)).then((code) => {
+  main(process.argv.slice(2)).then(async (code) => {
     process.exitCode = code;
+    // Once a day, after a snapshot or a diff: is a newer version of this skill published? Silent on
+    // any failure, off with --no-update-check; see lib/update-check.mjs.
+    if (["snapshot", "diff"].includes(parseArgs(process.argv.slice(2)).command)) {
+      const update = await checkForUpdate({ repo: "sitemap-watch", plugin: "sitemap-watch", current: VERSION });
+      if (update) console.error(updateLine(update));
+    }
   });
 }
 

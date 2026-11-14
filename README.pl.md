@@ -6,7 +6,7 @@ Co nowego na stronie — na podstawie jej map witryny. Agent Skill dla Claude Co
 
 Zapamiętuje, jakie strony wymieniają mapy witryny, i pokazuje, co się zmieniło od ostatniego razu: nowe strony, usunięte strony, zmieniony `lastmod` oraz nowe strony pogrupowane według sekcji. Zrobiony z myślą o pytaniu „co nowego u konkurencji”: skrypt liczy i porównuje, a agent mówi, co sugerują nowe sekcje. Tylko wbudowane moduły Node, bez instalacji.
 
-Wersja **1.102**. Zainstaluj go (poniżej), a potem poproś: **„sprawdź, co nowego u konkurencji: example.com, example.org”**. Pierwsze uruchomienie zapisuje punkt odniesienia i mówi, że nie ma jeszcze czego porównać; każde kolejne pokazuje nowe strony i nowe sekcje. Migawki są zapisywane w `~/.sitemap-watch/<site>/`.
+Wersja **1.103**. Zainstaluj go (poniżej), a potem poproś: **„sprawdź, co nowego u konkurencji: example.com, example.org”**. Pierwsze uruchomienie zapisuje punkt odniesienia i mówi, że nie ma jeszcze czego porównać; każde kolejne pokazuje nowe strony i nowe sekcje. Migawki są zapisywane w `~/.sitemap-watch/<site>/`.
 
 ![Pierwsze uruchomienie: punkt odniesienia dla mapy witryny getlooploop.com, 1852 adresy, nie ma jeszcze czego porównać](docs/sitemap-watch-baseline.png)
 
@@ -45,6 +45,12 @@ Claude Code:
 /plugin marketplace add Olexan-art/sitemap-watch
 /plugin install sitemap-watch@sitemap-watch
 ```
+
+Potem włącz automatyczne aktualizacje: w `/plugin` otwórz **Marketplaces**, wybierz `sitemap-watch` i kliknij **Enable auto-update**. Do tego czasu Claude Code trzyma zainstalowaną wersję; `/plugin marketplace update sitemap-watch` pobiera nowszą ręcznie. W Antigravity, aby zaktualizować, uruchom ponownie polecenie instalacji; w narzędziu skills — `npx skills update sitemap-watch`.
+
+### Sprawdzanie aktualizacji i licznik uruchomień
+
+Raz na dobę, po migawce lub porównaniu, skrypt pyta getlooploop.com o najnowszą wersję skilla. Żądanie zawiera nazwę skilla, jego wersję, system operacyjny (win, mac, linux lub other), losowy identyfikator instalacji z pliku `~/.getlooploop-skills/install-id` i liczbę uruchomień skilla od ostatniego sprawdzenia. Nic więcej: żadnych danych o obserwowanych witrynach, ani adresu, ani domeny, ani nazwy użytkownika czy komputera. Serwer ustala kraj na podstawie połączenia i nie przechowuje adresu IP. Jeśli getlooploop.com nie odpowiada, skill odczytuje wersję z pliku `plugin.json` tego repozytorium na GitHubie. O nowszej wersji powie jeden wiersz w terminalu; agent zaproponuje polecenie aktualizacji i uruchomi je tylko za twoją zgodą. Wyłączenie: `GETLOOPLOOP_NO_UPDATE_CHECK=1` albo `--no-update-check` (gdy ustawiono `CI`, sprawdzanie też jest wyłączone); wtedy nic nie jest wysyłane i identyfikator nie powstaje. Aby zresetować identyfikator, usuń folder `~/.getlooploop-skills`.
 
 ## Licencja
 
