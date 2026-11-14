@@ -1,0 +1,21 @@
+{
+  "name": "sitemap-watch",
+  "interface": {
+    "displayName": "Sitemap watch"
+  },
+  "plugins": [
+    {
+      "name": "sitemap-watch",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools",
+      "version": "1.101.0"
+    }
+  ]
+}

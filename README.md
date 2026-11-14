@@ -29,6 +29,23 @@ npx skills add Olexan-art/sitemap-watch --skill sitemap-watch
 
 Or copy `skills/sitemap-watch` into your agent's skills folder (for Claude Code: `~/.claude/skills/sitemap-watch`). Node 18 or newer; nothing else to install.
 
+### As a plugin (Google Antigravity, Claude Code)
+
+The repository is also a plugin: `plugin.json` and `.agents/plugins/marketplace.json` for Antigravity, `gemini-extension.json` for Gemini CLI, `.claude-plugin/` for Claude Code, with the skill in `skills/`.
+
+Google Antigravity:
+
+```
+agy plugin install https://github.com/Olexan-art/sitemap-watch
+```
+
+Claude Code:
+
+```
+/plugin marketplace add Olexan-art/sitemap-watch
+/plugin install sitemap-watch@sitemap-watch
+```
+
 ## License
 
 MIT. Made by [GetLoopLoop](https://www.getlooploop.com).

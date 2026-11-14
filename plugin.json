@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "sitemap-watch",
+  "version": "1.101.0",
+  "description": "Snapshots a site sitemaps and diffs the snapshots over time: new, removed and lastmod-changed URLs, with new pages grouped by section. Node built-ins only; the agent reads what the new pages mean.",
+  "author": {
+    "name": "GetLoopLoop",
+    "url": "https://www.getlooploop.com"
+  },
+  "homepage": "https://www.getlooploop.com",
+  "repository": "https://github.com/Olexan-art/sitemap-watch",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "sitemap",
+    "competitors",
+    "monitoring",
+    "agent-skill"
+  ]
+}
